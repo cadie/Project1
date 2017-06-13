@@ -54,28 +54,35 @@ You must give a full effort on every group and individual project.
 ## Pseudo code
 
 Load: Start Screen Displayed with Searchable Field and 'Randomize' Button;
+
 if (user enters keyword to search){
   user input is stored as a variable themeKeyword;
 }
+
 else (randomize button is clicked){
   a random string in the themes array is selected and stored in the themeKeyword variable;
 }
+
 Main Page Loads with search field and randomize button hidden and Supplies Button selected/clicked already {
   The themeKeyword + 'supplies' is used to generate results from the Amazon API under the 'Supplies' section;
   The results are displayed in the div under the buttons with: the name of the product, image of the product, short description, and price of the item. Top 20 are displayed.
 }
+
 if (the 'Recipes' button is clicked){
   The themeKeyword + 'recipes' is used to generate results from the Pinterest API under the 'Recipes' section;
   The results are displayed in the div under the buttons with: Pin Image, Pin Name, and when clicked it takes the user to the linked page in a new tab. Top 20 are displayed.
 }
+
 if (the 'Music' button is clicked){
   The themeKeyword + 'music' is used to generate results from the BING Video API under the 'Music' section;
   The results are displayed in the set div under the buttons with: Video Name, Video, and Video Description. When you click on the video it plays the video and music.
 }
+
 if (the 'Costumes' button is clicked){
   The themeKeyword + 'costumes' is used to generate results from the Pinterest API under the 'Costumes' section;
   The results are displayed in the div under the buttons with: Pin Image, Pin Name, and when clicked it takes the user to the linked page in a new tab. Top 20 are displayed.
 }
+
 if (the 'Games' button is clicked){
   The themeKeyword + 'games' is used to generate results from the Pinterest API under the 'games' section;
   The results are displayed in the div under the buttons with: Pin Image, Pin Name, and when clicked it takes the user to the linked page in a new tab. Top 20 are displayed.
