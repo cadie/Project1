@@ -22,43 +22,25 @@ $("#search-button").on("click", function(event){
   }
 });
 
+$("#randomize").on("click", function(event){
+  event.preventDefault();
+  userInput = $("#search-input").val().trim();
+  console.log(userInput);
+  // $("#search-input").val("");
+  // getAPIresults.music();
+  // getAPIresults.costumes();
+  // $('#results-screen').show();
+});
+
 
 var getAPIresults = {
   supplies: function(){
     $("#supplies-results").html('');
-    var queryURL = "https://api.cognitive.microsoft.com/bing/v5.0/videos/search?q=" + userInput + "+music" + "&mkt=en-us"
-    $.ajax({
-      url: queryURL,
-      beforeSend: function(xhrObj) {
-        // Request headers
-        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "416d8f635b1c4ecaaab8233c448a732b"); //replace value with your own key
-      },
-      type: "GET",
-      // Request body
-      //data: "{body}",
-    })
-    .done(function(response) {
-      console.log(response);
-      displayVideoResults(response);
-    });
+
   },
   recipes: function(){
     $("#recipes-results").html('');
-    var queryURL = "https://api.cognitive.microsoft.com/bing/v5.0/videos/search?q=" + userInput + "+music" + "&mkt=en-us"
-    $.ajax({
-      url: queryURL,
-      beforeSend: function(xhrObj) {
-        // Request headers
-        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "416d8f635b1c4ecaaab8233c448a732b"); //replace value with your own key
-      },
-      type: "GET",
-      // Request body
-      //data: "{body}",
-    })
-    .done(function(response) {
-      console.log(response);
-      displayVideoResults(response);
-    });
+
   },
   music: function(){
     $("#music-results").html('');
@@ -100,21 +82,7 @@ var getAPIresults = {
   },
   games: function(){
     $("#games-results").html('');
-    var queryURL = "https://api.cognitive.microsoft.com/bing/v5.0/videos/search?q=" + userInput + "+music" + "&mkt=en-us"
-    $.ajax({
-      url: queryURL,
-      beforeSend: function(xhrObj) {
-        // Request headers
-        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "416d8f635b1c4ecaaab8233c448a732b"); //replace value with your own key
-      },
-      type: "GET",
-      // Request body
-      //data: "{body}",
-    })
-    .done(function(response) {
-      console.log(response);
-      displayVideoResults(response);
-    });
+
   },
 
 };
