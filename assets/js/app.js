@@ -22,14 +22,17 @@ $("#search-button").on("click", function(event){
   }
 });
 
+// RANDOMIZE BUTTON PULLS RANDOM THEME FROM ARRAY AND DISPLAYS RESULTS
 $("#randomize").on("click", function(event){
   event.preventDefault();
-  userInput = $("#search-input").val().trim();
+  userInput = themes[Math.floor(Math.random()*themes.length)];
   console.log(userInput);
-  // $("#search-input").val("");
-  // getAPIresults.music();
-  // getAPIresults.costumes();
-  // $('#results-screen').show();
+  getAPIresults.supplies();
+  getAPIresults.recipes();
+  getAPIresults.music();
+  getAPIresults.costumes();
+  getAPIresults.games();
+  $('#results-screen').show();
 });
 
 
