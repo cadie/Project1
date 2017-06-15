@@ -10,25 +10,48 @@
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
   <body>
-    
+
       <div class="row column text-center">
         <h1>So You Want To Throw A Party?</h1>
-        <p>Enter a theme in the search box below.</p>
       </div>
 
-    <div class="row">
-      <div class="large-6 large-offset-3 end column">
+    <div class="row" id="search-screen">
+      <div class="medium-6 medium-offset-3 end column">
         <div class="hero-search-filter-content">
           <form class="hero-search-filter-form" action="">
-            <input id="search" class="hero-search-filter-form-find" type="text" autofocus/>
-            <button class="button"><i class="fa fa-search"></i></button>
+            <input id="search-input" class="hero-search-filter-form-find" type="text" autofocus placeholder="Enter a Party Theme"/>
+            <button id="search-button" class="button"><i class="fa fa-search"></i></button>
           </form>
+          <p class="or">OR</p>
+          <button class="button">Randomize!</button>
         </div>
+      </div>
+    </div><!--/#search-screen-->
+
+    <div class="row" id="results-screen">
+      <div class="column">
+        <div class="expanded button-group">
+          <a class="button">Supplies</a>
+          <a class="button">Recipes</a>
+          <a class="button">Music</a>
+          <a class="button">Costumes</a>
+          <a class="button">Games</a>
+        </div>
+        <div class="api-results" id="supplies-results">
+
+        </div>
+        <div class="api-results" id="recipes-results"></div>
+        <div class="api-results" id="music-results"></div>
+        <div class="api-results" id="costumes-results"></div>
+        <div class="api-results" id="games-results"></div>
       </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+    <script src="assets/js/app.js">
+
+    </script>
     <script>
       $(document).foundation();
     </script>
