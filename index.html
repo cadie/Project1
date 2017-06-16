@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Party App</title>
+    <title>So You Want To Throw A Party?</title>
     <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
     <script src="https://use.fontawesome.com/d88dc4d383.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
@@ -12,40 +12,51 @@
   <body>
 
     <div class="hero">
-      <div class="row column text-center">
-        <h1>So You Want To Throw A Party?</h1>
+      <div class="row column">
+        <img src="assets/images/dbwhite.svg" alt="So You Want To Throw A Party? Logo" class="float-left">
+        <div class="button-group float-right">
+          <a class="button hvr-sweep-to-right">Login</a>
+          <a class="button hvr-sweep-to-right">Sign Up</a>
+        </div>
       </div>
     </div>
 
-    <div class="row" id="search-screen">
-      <div class="medium-6 medium-offset-3 end column">
-        <div class="hero-search-filter-content">
-          <form class="hero-search-filter-form" action="">
-            <input id="search-input" class="hero-search-filter-form-find" type="text" autofocus placeholder="Enter a Party Theme"/>
-            <button id="search-button" class="button"><i class="fa fa-search"></i></button>
-          </form>
-          <p class="or">OR</p>
-          <button class="button" id="randomize">Randomize!</button>
+    <div class="tier-2">
+      <div class="row" id="search-screen">
+        <div class="medium-6 end column">
+          <div class="hero-search-filter-content">
+            <form class="hero-search-filter-form" action="">
+              <input id="search-input" class="hero-search-filter-form-find" type="text" autofocus placeholder="Enter a Party Theme"/>
+              <button id="search-button" class="button"><i class="fa fa-search"></i></button>
+            </form>
+            <button class="button" id="randomize">Randomize!</button>
+          </div>
         </div>
-      </div>
-    </div><!--/#search-screen-->
+      </div><!--/#search-screen-->
+    </div><!--/#tier-2-->
 
+    <div class="tier-2">
+      <div class="row" id="category-btns">
+        <div class="column">
+          <div class="expanded button-group">
+            <a class="button" id="supplies-button">Supplies</a>
+            <a class="button" id="recipes-button">Recipes</a>
+            <a class="button" id="music-button">Music</a>
+            <a class="button" id="costumes-button">Costumes</a>
+            <a class="button" id="games-button">Games</a>
+          </div>
+        </div><!--/column-->
+      </div><!--/#category-btns-->
+    </div><!--/#tier-3-->
     <div class="row" id="results-screen">
       <div class="column">
-        <div class="expanded button-group">
-          <a class="button" id="supplies-button">Supplies</a>
-          <a class="button" id="recipes-button">Recipes</a>
-          <a class="button" id="music-button">Music</a>
-          <a class="button" id="costumes-button">Costumes</a>
-          <a class="button" id="games-button">Games</a>
-        </div>
         <div class="api-results" id="supplies-results"></div>
         <div class="api-results" id="recipes-results"></div>
         <div class="api-results" id="music-results"></div>
         <div class="api-results" id="costumes-results"></div>
         <div class="api-results" id="games-results"></div>
       </div>
-    </div>
+    </div><!--/results-screen-->
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
