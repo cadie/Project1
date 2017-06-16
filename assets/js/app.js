@@ -3,6 +3,7 @@ var themes = ["80s", "70s", "Star Wars", "Greek", "Sports", "Western", "Princess
 var userInput;
 
 // HIDE #results-screen ON LOAD
+$('#category-btns').hide();
 $('#results-screen').hide();
 $('#recipes-results').hide();
 $('#costumes-results').hide();
@@ -22,6 +23,7 @@ $("#search-button").on("click", function(event){
     getAPIresults.costumes();
     getAPIresults.games();
     $('#results-screen').show();
+    $('#category-btns').show();
   }
 });
 
@@ -36,12 +38,45 @@ $("#randomize").on("click", function(event){
   getAPIresults.costumes();
   getAPIresults.games();
   $('#results-screen').show();
+  $('#category-btns').show();
+
 });
 
 
 var getAPIresults = {
   supplies: function(){
     $("#supplies-results").html('');
+    var q = userInput + " supplies";
+    var divName = '#supplies-results';
+    $.ajax({
+        type: "GET",
+        url: 'http://open.api.ebay.com/shopping?callname=FindItemsAdvanced',
+        dataType: "jsonp",
+        jsonp: "callbackname",
+        crossDomain: true,
+        data: {
+            'appid': 'TiffanyJ-UCFBootC-PRD-e8df3d054-a7512aa1',
+            'version': '771',
+            'siteid': '0',
+            'requestencoding': 'JSON',
+            'responseencoding': 'JSON',
+            'QueryKeywords': q,
+            'MaxEntries': '10',
+            'PriceMin' : { 'Value' : '250.0', 'CurrencyID' : 'USD'},
+            'PriceMax' : { 'Value' : '300.0', 'CurrencyID' : 'USD'},
+            'callback' : true
+        },
+        success: function(object) {
+          console.log(object);
+          displaySuppliesResults(object, divName);
+        },
+        error: function(object,x,errorThrown) {
+        $("#ajaxLoad").html('');
+            alert("call failure");
+            $("#eBayXMLResponse").val(JSON.stringify(errorThrown,null,4));
+
+        }
+    });
 
   },
   recipes: function(){
@@ -58,10 +93,10 @@ var getAPIresults = {
       // Request body
       //data: "{body}",
     })
-    .done(function(response) {
-      console.log(response);
-      displayImageResults(response, divName);
-    });
+      .done(function(response) {
+        console.log(response);
+        displayImageResults(response, divName);
+      });
   },
   music: function(){
     $("#music-results").html('');
@@ -134,6 +169,13 @@ function displayVideoResults(response, divName){
 function displayImageResults(response, divName){
   for (var i = 0; i < response.value.length; i++) {
     $(divName).append("<div class='image-result-container'>" + "<div class='card'>" + "<a href='" + response.value[i].contentUrl + "' target='_blank'>" + "<div style=\"background: url(\'" + response.value[i].thumbnailUrl + "\') center center no-repeat; background-size:cover;\" class='thumbnail-image'>" + "</div>" + "</a>" + "<a class='card-link-text' href='" + response.value[i].contentUrl + "' target='_blank'>" + response.value[i].name + "</a>" + "<div class='favorite'></div>" + "</div>" + "</div>");
+  }
+};
+
+// function to display the supplies results in a card layout
+function displaySuppliesResults(object, divName){
+  for (var i = 0; i < object.SearchResult[0].ItemArray.Item.length; i++) {
+      $(divName).append("<div class='image-result-container'>" + "<div class='card'>" + "<a href='" + object.SearchResult[0].ItemArray.Item[i].ViewItemURLForNaturalSearch + "' target='_blank'>" + "<div style=\"background: url(\'" + object.SearchResult[0].ItemArray.Item[i].GalleryURL + "\') center center no-repeat; background-size:cover;\" class='thumbnail-image'>" + "</div>" + "</a>" + "<a class='card-link-text' href='" + object.SearchResult[0].ItemArray.Item[i].ViewItemURLForNaturalSearch + "' target='_blank'>" + object.SearchResult[0].ItemArray.Item[i].Title + "</a>" + "<div class='favorite'></div>" + "</div>" + "</div>");
   }
 };
 
