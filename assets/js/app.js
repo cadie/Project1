@@ -1,5 +1,5 @@
 // ARRAY FOR RANDOMIZED THEMES
-var themes = ["80s", "70s", "Star Wars", "Greek", "Sports", "Western", "Princess", "Beach", "Luau", "Ninja", "Pirate", "Movie", "Carnival", "Fiesta", "Tie Dye", "Patriotic", "Cactus", "Tiny Hat", "Vampire", "Mustache", "Disney", "Harry Potter", "Mardi Gras", "Ugly Sweater", "Spooky"];
+var themes = ["80s", "70s", "Star Wars", "Greek", "Sports", "Western", "Princess", "Beach", "Luau", "Ninja", "Pirate", "Movie", "Carnival", "Tie Dye", "Patriotic", "Cactus", "Tiny Hat", "Vampire", "Mustache", "Disney", "Harry Potter", "Mardi Gras", "Ugly Sweater", "Spooky"];
 var userInput;
 
 // HIDE #results-screen ON LOAD
