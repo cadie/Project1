@@ -72,7 +72,7 @@ var getAPIresults = {
     var divName = '#supplies-results';
     $.ajax({
         type: "GET",
-        url: 'http://open.api.ebay.com/shopping?callname=FindItemsAdvanced',
+        url: 'https://open.api.ebay.com/shopping?callname=FindItemsAdvanced',
         dataType: "jsonp",
         jsonp: "callbackname",
         crossDomain: true,
