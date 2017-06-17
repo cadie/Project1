@@ -1,5 +1,5 @@
 // ARRAY FOR RANDOMIZED THEMES
-var themes = ["80s", "70s", "Star Wars", "Greek", "Sports", "Western", "Princess", "Beach", "Luau", "Ninja", "Pirate", "Movie", "Carnival", "Tie Dye", "Patriotic", "Cactus", "Tiny Hat", "Vampire", "Mustache", "Disney", "Harry Potter", "Mardi Gras", "Ugly Sweater", "Spooky"];
+var themes = ["80s", "70s", "Star Wars", "Sports", "Western", "Princess", "Beach", "Luau", "Ninja", "Pirate", "Movie", "Carnival", "Tie Dye", "Patriotic", "Cactus", "Mustache", "Disney", "Harry Potter", "Mardi Gras", "Ugly Sweater", "Spooky"];
 var userInput;
 
 // HIDE #results-screen ON LOAD
@@ -9,21 +9,27 @@ $('#recipes-results').hide();
 $('#costumes-results').hide();
 $('#music-results').hide();
 $('#games-results').hide();
+$('#signup-form').hide();
+
+$("#sign-up").on("click", function(event){
+  event.preventDefault();
+  $('#signup-form').show();
+  });
+
+  $("#close").on("click", function(event){
+    event.preventDefault();
+    $('#signup-form').hide();
+    });
+
+
 
 // ON CLICK FUNCTION FOR SEARCH BUTTON
 $("#search-button").on("click", function(event){
   event.preventDefault();
   userInput = $("#search-input").val().trim();
   if ($("#search-input").val().length != 0){
-    console.log(userInput);
     $("#search-input").val("");
-    getAPIresults.supplies();
-    getAPIresults.recipes();
-    getAPIresults.music();
-    getAPIresults.costumes();
-    getAPIresults.games();
-    $('#results-screen').show();
-    $('#category-btns').show();
+    onCardLoad();
   }
 });
 
@@ -31,6 +37,11 @@ $("#search-button").on("click", function(event){
 $("#randomize").on("click", function(event){
   event.preventDefault();
   userInput = themes[Math.floor(Math.random()*themes.length)];
+  onCardLoad();
+});
+
+// FUNCTION THAT CALLS THE GET API RESULTS FUNCTIONS AND HIDES/SHOWS ELEMENTS
+function onCardLoad(){
   console.log(userInput);
   getAPIresults.supplies();
   getAPIresults.recipes();
@@ -39,8 +50,19 @@ $("#randomize").on("click", function(event){
   getAPIresults.games();
   $('#results-screen').show();
   $('#category-btns').show();
-
-});
+  $('#supplies-button').addClass("active");
+  $('#recipes-button').removeClass("active");
+  $('#costumes-button').removeClass("active");
+  $('#music-button').removeClass("active");
+  $('#games-button').removeClass("active");
+  $('#current-theme').html(userInput);
+  $('#about-section').hide();
+  $('#supplies-results').show();
+  $('#recipes-results').hide();
+  $('#costumes-results').hide();
+  $('#music-results').hide();
+  $('#games-results').hide();
+};
 
 
 var getAPIresults = {
@@ -61,9 +83,9 @@ var getAPIresults = {
             'requestencoding': 'JSON',
             'responseencoding': 'JSON',
             'QueryKeywords': q,
+            'OutputSelector' : 'PictureURLLarge',
             'MaxEntries': '10',
-            'PriceMin' : { 'Value' : '250.0', 'CurrencyID' : 'USD'},
-            'PriceMax' : { 'Value' : '300.0', 'CurrencyID' : 'USD'},
+            'GetItem' : true,
             'callback' : true
         },
         success: function(object) {
@@ -87,7 +109,7 @@ var getAPIresults = {
       url: queryURL,
       beforeSend: function(xhrObj) {
         // Request headers
-        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "416d8f635b1c4ecaaab8233c448a732b"); //replace value with your own key
+        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "96eababac8cd4e6687a1849e5f7a99f9"); //replace value with your own key
       },
       type: "GET",
       // Request body
@@ -106,7 +128,7 @@ var getAPIresults = {
       url: queryURL,
       beforeSend: function(xhrObj) {
         // Request headers
-        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "416d8f635b1c4ecaaab8233c448a732b"); //replace value with your own key
+        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "96eababac8cd4e6687a1849e5f7a99f9"); //replace value with your own key
       },
       type: "GET",
       // Request body
@@ -125,7 +147,7 @@ var getAPIresults = {
       url: queryURL,
       beforeSend: function(xhrObj) {
         // Request headers
-        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "416d8f635b1c4ecaaab8233c448a732b"); //replace value with your own key
+        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "96eababac8cd4e6687a1849e5f7a99f9"); //replace value with your own key
       },
       type: "GET",
       // Request body
@@ -144,7 +166,7 @@ var getAPIresults = {
       url: queryURL,
       beforeSend: function(xhrObj) {
         // Request headers
-        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "416d8f635b1c4ecaaab8233c448a732b"); //replace value with your own key
+        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "96eababac8cd4e6687a1849e5f7a99f9"); //replace value with your own key
       },
       type: "GET",
       // Request body
@@ -179,7 +201,14 @@ function displaySuppliesResults(object, divName){
   }
 };
 
+
+
 $("#supplies-button").on("click", function(event){
+  $('#supplies-button').addClass("active");
+  $('#recipes-button').removeClass("active");
+  $('#costumes-button').removeClass("active");
+  $('#music-button').removeClass("active");
+  $('#games-button').removeClass("active");
   $('#supplies-results').show();
   $('#recipes-results').hide();
   $('#costumes-results').hide();
@@ -187,6 +216,11 @@ $("#supplies-button").on("click", function(event){
   $('#games-results').hide();
 });
 $("#recipes-button").on("click", function(event){
+  $('#supplies-button').removeClass("active");
+  $('#recipes-button').addClass("active");
+  $('#costumes-button').removeClass("active");
+  $('#music-button').removeClass("active");
+  $('#games-button').removeClass("active");
   $('#supplies-results').hide();
   $('#recipes-results').show();
   $('#costumes-results').hide();
@@ -194,6 +228,11 @@ $("#recipes-button").on("click", function(event){
   $('#games-results').hide();
 });
 $("#costumes-button").on("click", function(event){
+  $('#supplies-button').removeClass("active");
+  $('#recipes-button').removeClass("active");
+  $('#costumes-button').addClass("active");
+  $('#music-button').removeClass("active");
+  $('#games-button').removeClass("active");
   $('#supplies-results').hide();
   $('#recipes-results').hide();
   $('#costumes-results').show();
@@ -201,6 +240,11 @@ $("#costumes-button").on("click", function(event){
   $('#games-results').hide();
 });
 $("#music-button").on("click", function(event){
+  $('#supplies-button').removeClass("active");
+  $('#recipes-button').removeClass("active");
+  $('#costumes-button').removeClass("active");
+  $('#music-button').addClass("active");
+  $('#games-button').removeClass("active");
   $('#supplies-results').hide();
   $('#recipes-results').hide();
   $('#costumes-results').hide();
@@ -208,6 +252,11 @@ $("#music-button").on("click", function(event){
   $('#games-results').hide();
 });
 $("#games-button").on("click", function(event){
+  $('#supplies-button').removeClass("active");
+  $('#recipes-button').removeClass("active");
+  $('#costumes-button').removeClass("active");
+  $('#music-button').removeClass("active");
+  $('#games-button').addClass("active");
   $('#supplies-results').hide();
   $('#recipes-results').hide();
   $('#costumes-results').hide();
